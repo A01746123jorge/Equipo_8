@@ -1,5 +1,5 @@
 public class MySemaphore {
-    private int n = 0;
+    private int n;
     public MySemaphore(int num) {
         this.n = num;
     }

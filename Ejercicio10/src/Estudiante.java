@@ -5,12 +5,18 @@ public class Estudiante {
     }
     public class Entra implements Runnable {
         public void run() {
-            System.out.println(name + " Entra");
+            while(Shared.run) {
+                try{Thread.sleep(1000);}catch(InterruptedException e){}
+                System.out.println(name + " Entra");
+            }
         }
     }
     public class Sale implements Runnable {
         public void run() {
-            System.out.println(name + " Sale");
+            while(Shared.run) {
+                try{Thread.sleep(1000);}catch(InterruptedException e){}
+                System.out.println(name + " Sale");
+            }
         }
     }
 }
