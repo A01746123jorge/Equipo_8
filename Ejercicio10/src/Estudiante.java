@@ -24,7 +24,7 @@ public class Estudiante {
                     esperandoE = true;
                 }
                 Shared.sMutex.V();
-                if (Shared.estudianteEsperandoEntrada) {
+                if (esperandoE) {
                     Shared.sBloqueoEstudianteEntrada.P();
                 }
                 esperandoE = false;

@@ -13,7 +13,7 @@ public class Prefecto {
                 Shared.sEntraPrefecto.P();
                 Shared.sMutex.P();
                 if (Shared.numEstudiantes <= 0) {
-                    System.out.println("Hay 0 Estudiandes. Deja entrar a " + name + ".");
+                    System.out.println("Hay 0 estudiandes. Deja entrar a " + name + ".");
                     Shared.prefectoAdentro = true;
                     Shared.prefectoEsperandoEntrada = false;
                     esperandoE = false;
@@ -32,7 +32,7 @@ public class Prefecto {
                     }
                 }
                 Shared.sMutex.V();
-                if (Shared.prefectoEsperandoEntrada) {
+                if (esperandoE) {
                     Shared.sBloqueoPrefectoEntrada.P();
                 }
                 esperandoE = false;
@@ -51,7 +51,7 @@ public class Prefecto {
                 Shared.sSalePrefecto.P();
                 Shared.sMutex.P();
                 if (Shared.numEstudiantes <= 0) {
-                    System.out.println("Hay 0 Estudiantes. Deja salir a " + name + ".");
+                    System.out.println("Hay 0 estudiantes. Deja salir a " + name + ".");
                     Shared.prefectoEsperandoSalida = false;
                     esperandoS = false;
                 }
@@ -61,7 +61,7 @@ public class Prefecto {
                     esperandoS = true;
                 }
                 Shared.sMutex.V();
-                if (Shared.prefectoEsperandoSalida){
+                if (esperandoS){
                     Shared.sBloqueoPrefectoSalida.P();
                 }
                 esperandoS = false;
