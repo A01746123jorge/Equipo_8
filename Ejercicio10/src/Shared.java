@@ -1,7 +1,7 @@
 public class Shared {
-    public static int studentruns = 10;
+    public static int studentruns = 1;
     public static int prefectruns = 10;
-    public static int N = 100;
+    public static int N = 500;
     public static int studentLimit = 50;
     public static MySemaphore sMutex = new MySemaphore(1);
 
