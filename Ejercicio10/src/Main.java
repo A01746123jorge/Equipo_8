@@ -11,7 +11,7 @@ public class Main {
         Thread[] tEstudianteSale = new Thread[n];
 
         for (int i = 0; i < n; i++) {
-            estudiantes[i] = new Estudiante("Estudiante #" + (i + 1));
+            estudiantes[i] = new Estudiante("Estudiante (Thread-" + (i + 1) + ")");
             tEstudianteEntra[i] = new Thread(estudiantes[i].new Entra());
             tEstudianteSale[i] = new Thread(estudiantes[i].new Sale());
             tEstudianteEntra[i].start();
