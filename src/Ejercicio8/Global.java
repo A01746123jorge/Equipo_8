@@ -2,8 +2,8 @@ package Ejercicio8;
 import Common.MySemaphore;
 
 public class Global {
-    public static int N = 1;
-    public static int M = 1;
+    public static final int N = 1;
+    public static final int M = 1;
     public static int runs = 5;
     public static MySemaphore sMutex = new MySemaphore(0);
 
