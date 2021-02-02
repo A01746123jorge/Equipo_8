@@ -4,7 +4,7 @@ import Common.MySemaphore;
 public class Global {
     public static int studentruns = 1;
     public static int prefectruns = 10;
-    public static final int N = 500;
+    public static int N = 500;
     public static int studentLimit = 50;
     public static MySemaphore sMutex = new MySemaphore(1);
 
@@ -24,6 +24,11 @@ public class Global {
     public static MySemaphore sBloqueoEstudianteEntrada = new MySemaphore(0);
     public static MySemaphore sEntraEstudiante = new MySemaphore(N);
     public static MySemaphore sSaleEstudiante = new MySemaphore(0);
+
+    public static void setN(int num) {
+        N = num;
+        sEntraEstudiante = new MySemaphore(num);
+    }
 
     public static void waitRandom() throws RuntimeException{
         try {

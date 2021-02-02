@@ -2,8 +2,8 @@ package Ejercicio8;
 import Common.MySemaphore;
 
 public class Global {
-    public static final int N = 1;
-    public static final int M = 1;
+    public static int N = 1;
+    public static int M = 1;
     public static int runs = 5;
     public static MySemaphore sMutex = new MySemaphore(0);
 
@@ -13,6 +13,17 @@ public class Global {
     public static MySemaphore sMesaHamburguesaO = new MySemaphore(0);
     public static MySemaphore sMesaPedidosD = new MySemaphore(M);
     public static MySemaphore sMesaPedidosO = new MySemaphore(0);
+
+    public static void setN(int num) {
+        N = num;
+        sMesaOrdenesD = new MySemaphore(num);
+    }
+
+    public static void setM(int num) {
+        M = num;
+        sMesaHamburguesaD = new MySemaphore(num);
+        sMesaPedidosD = new MySemaphore(num);
+    }
 
     public static void waitRandom() throws RuntimeException{
         try {
