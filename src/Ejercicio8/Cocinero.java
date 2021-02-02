@@ -6,6 +6,13 @@ public class Cocinero implements Runnable {
         this.name = s;
     }
     public void run() {
-        System.out.println(name + ": TODO");
+        for (int i = 0; i < Global.runs; i++){
+            Global.sMesaHamburguesaD.P();
+            System.out.println(name + ": Hay espacio en mesa de hamburguesas.");
+            System.out.println(name + ": Haciendo hamburguesa.");
+            Global.waitRandom();
+            System.out.println(name + ": Hamburguesa hecha.");
+            Global.sMesaHamburguesaO.V();
+        }
     }
 }
