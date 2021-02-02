@@ -1,3 +1,5 @@
+package Ejercicio10;
+
 public class Prefecto {
     public String name = "Prefecto";
     private boolean esperandoE = false;

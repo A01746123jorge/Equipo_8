@@ -1,3 +1,5 @@
+package Ejercicio10;
+
 public class Estudiante {
     public String name = "Estudiante";
     private boolean esperandoE = false;

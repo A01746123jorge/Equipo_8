@@ -1,3 +1,5 @@
+package Ejercicio10;
+
 public class Shared {
     public static int studentruns = 1;
     public static int prefectruns = 10;

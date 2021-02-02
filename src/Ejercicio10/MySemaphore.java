@@ -1,3 +1,5 @@
+package Ejercicio10;
+
 public class MySemaphore {
     private int n;
     public MySemaphore(int num) {
