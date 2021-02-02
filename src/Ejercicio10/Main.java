@@ -1,11 +1,14 @@
 package Ejercicio10;
 
 public class Main {
+    public static void main() throws Exception {
+        main(new String[0]);
+    }
     public static void main(String[] args) throws Exception {
 
-        int n = Shared.N;
+        int n = Global.N;
 
-        Prefecto prefecto = new Prefecto(Shared.nombrePrefecto);
+        Prefecto prefecto = new Prefecto(Global.nombrePrefecto);
         Thread tPrefectoEntra = new Thread(prefecto.new Entra());
         Thread tPrefectoSale = new Thread(prefecto.new Sale());
         Estudiante[] estudiantes = new Estudiante[n];

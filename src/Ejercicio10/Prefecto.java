@@ -9,77 +9,77 @@ public class Prefecto {
     }
     public class Entra implements Runnable {
         public void run() {
-            for (int i = 0; i < Shared.prefectruns; i++) {
-                Shared.waitRandom();
+            for (int i = 0; i < Global.prefectruns; i++) {
+                Global.waitRandom();
                 //System.out.println(name + " empieza intento de entrada.");
-                Shared.sEntraPrefecto.P();
-                Shared.sMutex.P();
-                if (Shared.numEstudiantes <= 0) {
+                Global.sEntraPrefecto.P();
+                Global.sMutex.P();
+                if (Global.numEstudiantes <= 0) {
                     System.out.println("Hay 0 estudiandes. Deja entrar a " + name + ".");
-                    Shared.prefectoAdentro = true;
-                    Shared.prefectoEsperandoEntrada = false;
+                    Global.prefectoAdentro = true;
+                    Global.prefectoEsperandoEntrada = false;
                     esperandoE = false;
                 }
                 else {
-                    if (Shared.numEstudiantes > Shared.studentLimit) {
-                        System.out.println("Hay mas de " + Shared.studentLimit + " estudiantes. Deja entrar a " + name + ".");
-                        Shared.prefectoAdentro = true;
-                        Shared.prefectoEsperandoEntrada = false;
+                    if (Global.numEstudiantes > Global.studentLimit) {
+                        System.out.println("Hay mas de " + Global.studentLimit + " estudiantes. Deja entrar a " + name + ".");
+                        Global.prefectoAdentro = true;
+                        Global.prefectoEsperandoEntrada = false;
                         esperandoE = false;
                     }
                     else {
                         System.out.println(name + " intento entrar, pero fue bloqueado.");
-                        Shared.prefectoEsperandoEntrada = true;
+                        Global.prefectoEsperandoEntrada = true;
                         esperandoE = true;
                     }
                 }
-                Shared.sMutex.V();
+                Global.sMutex.V();
                 if (esperandoE) {
-                    Shared.sBloqueoPrefectoEntrada.P();
+                    Global.sBloqueoPrefectoEntrada.P();
                 }
                 esperandoE = false;
                 System.out.println(name + " Entra.");
                 //Shared.waitRandom();
-                Shared.sSalePrefecto.V();
-                Shared.waitRandom();
+                Global.sSalePrefecto.V();
+                Global.waitRandom();
             }
         }
     }
     public class Sale implements Runnable {
         public void run() {
-            for (int i = 0; i < Shared.prefectruns; i++) {
-                Shared.waitRandom();
+            for (int i = 0; i < Global.prefectruns; i++) {
+                Global.waitRandom();
                 //System.out.println(name + " empieza intento salida.");
-                Shared.sSalePrefecto.P();
-                Shared.sMutex.P();
-                if (Shared.numEstudiantes <= 0) {
+                Global.sSalePrefecto.P();
+                Global.sMutex.P();
+                if (Global.numEstudiantes <= 0) {
                     System.out.println("Hay 0 estudiantes. Deja salir a " + name + ".");
-                    Shared.prefectoEsperandoSalida = false;
+                    Global.prefectoEsperandoSalida = false;
                     esperandoS = false;
                 }
                 else {
                     System.out.println(name + " intento salir, pero fue bloqueado.");
-                    Shared.prefectoEsperandoSalida = true;
+                    Global.prefectoEsperandoSalida = true;
                     esperandoS = true;
                 }
-                Shared.sMutex.V();
+                Global.sMutex.V();
                 if (esperandoS){
-                    Shared.sBloqueoPrefectoSalida.P();
+                    Global.sBloqueoPrefectoSalida.P();
                 }
                 esperandoS = false;
                 System.out.println(name + " Sale.");
                 //Shared.waitRandom();
-                Shared.sMutex.P();
-                Shared.prefectoAdentro = false;
-                if (Shared.estudianteEsperandoEntrada) {
+                Global.sMutex.P();
+                Global.prefectoAdentro = false;
+                if (Global.estudianteEsperandoEntrada) {
                     System.out.println(name + " salio. Deja entrar a un estudiante.");
-                    Shared.estudianteEsperandoEntrada = false;
-                    Shared.numEstudiantes++;
-                    Shared.sBloqueoEstudianteEntrada.V();
+                    Global.estudianteEsperandoEntrada = false;
+                    Global.numEstudiantes++;
+                    Global.sBloqueoEstudianteEntrada.V();
                 }
-                Shared.sMutex.V();
-                Shared.sEntraPrefecto.V();
-                Shared.waitRandom();
+                Global.sMutex.V();
+                Global.sEntraPrefecto.V();
+                Global.waitRandom();
             }
         }
     }

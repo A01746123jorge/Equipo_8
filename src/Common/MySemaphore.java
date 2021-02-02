@@ -1,4 +1,4 @@
-package Ejercicio10;
+package Common;
 
 public class MySemaphore {
     private int n;
