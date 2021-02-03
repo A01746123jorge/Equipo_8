@@ -1,34 +1,56 @@
 package Ejercicio11;
 import Common.MySemaphore;
 public class Main {
-    public static MySemaphore sWomanEnter = new MySemaphore(1);
-    public static MySemaphore sManEnter = new MySemaphore(1);
+    public static MySemaphore sWomanEntering = new MySemaphore(1);
+    public static MySemaphore sManEntering = new MySemaphore(1);
     public static MySemaphore sMutex = new MySemaphore(1);
     public static MySemaphore sMenMutex = new MySemaphore(1);
     public static MySemaphore sWomenMutex = new MySemaphore(1);
     public static MySemaphore sWomanWait = new MySemaphore(0);
     public static MySemaphore sManWait = new MySemaphore(0);
+    public static MySemaphore sWomanIn = new MySemaphore(0);
+    public static MySemaphore sManIn = new MySemaphore(0);
     public static int MEN = 0;
     public static int WOMEN = 0;
     public static int N = 100;
+    public static boolean womanWaits = false;
+    public static boolean manWaits = false;
     public static void WomanEnter() {
-        sWomanEnter.P();
+        sWomanEntering.P();
             int count;
-            boolean noMen;
+            boolean waiting;
             sMutex.P();
-                noMen = MEN <= 0;
-                if (noMen) {
-                    sWomanWait.V();
+                waiting = MEN > 0;
+                womanWaits = waiting;
+                if (!waiting) {
                     WOMEN++;
                 }
                 count = WOMEN;
             sMutex.V();
-            sWomanWait.P();
+            if (waiting) {
+                sWomanWait.P();
+            }
             System.out.println("Woman entered. Total: " + count);
-        sWomanEnter.V();
+            sWomanIn.V();
+        sWomanEntering.V();
     }
     public static void WomanExit() {
-        System.out.println("Test2");
+        int count;
+        boolean free;
+        sWomanIn.P();
+        sMutex.P();
+            count = --WOMEN;
+            free = count <= 0 && manWaits;
+            if (free) {
+                MEN++;
+                manWaits = false;
+            }
+        sMutex.V();
+        System.out.println("Woman exits. Total: " + count);
+        if (free) {
+            System.out.println(count + " Women. Freeing wating man.");
+            sManWait.V();
+        }
     }
     public static void ManEnter() {
         System.out.println("Test3");
