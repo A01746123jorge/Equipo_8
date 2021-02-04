@@ -7,3 +7,5 @@ Como la aplicación es un .jar es muy facil ejecutarla. Lo unico que se necesita
 
 El commando una vez que la maquina virtual este installada en Windows es:
 java -jar c:\path\to\file\ProyectoFinalEq8.jar
+
+Nota: asegurate que tengas los privilegios necesarios
